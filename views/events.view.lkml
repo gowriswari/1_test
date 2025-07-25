@@ -20,6 +20,13 @@ view: events {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
   }
+  dimension_group: test {
+    type: duration
+    intervals: [day,month]
+   # sql: ${TABLE}.created_at ;;
+  sql_start: ${created_date} ;;
+  sql_end: ${users.created_date} ;;
+  }
   dimension: event_type {
     type: string
     sql: ${TABLE}.event_type ;;
