@@ -36,10 +36,10 @@ explore: events {
 }
 
 explore: order_items {
-  access_filter: {
-    user_attribute: sale_price_greater_than_50
-    field: sale_price
-  }
+#   access_filter: {
+# #     user_attribute: sale_price_greater_than_50
+#     field: sale_price
+#   }
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
