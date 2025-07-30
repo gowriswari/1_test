@@ -11,6 +11,12 @@ view: users {
     type: number
     sql: ${TABLE}.age ;;
   }
+
+  dimension: custom_age {
+    type: number
+    sql: ${age}*2 ;;
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
@@ -73,13 +79,13 @@ view: users {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	last_name,
-	first_name,
-	orders.count,
-	events.count,
-	order_items.count
-	]
+  id,
+  last_name,
+  first_name,
+  orders.count,
+  events.count,
+  order_items.count
+  ]
   }
 
 }
