@@ -76,6 +76,12 @@ view: users {
     drill_fields: [detail*]
   }
 
+  dimension: location {
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

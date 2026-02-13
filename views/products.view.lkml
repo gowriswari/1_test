@@ -36,6 +36,25 @@ view: products {
     type: number
     sql: ${TABLE}.retail_price ;;
   }
+
+  dimension: rank {
+    type: number
+    sql: ${retail_price} - ${distribution_center_id} ;;
+  }
+
+  dimension: hit_limit {
+    type: string
+    sql:
+    CASE
+    WHEN ${rank} = 0 THEN '0'
+    WHEN ${rank}  >=1 AND ${rank}   < 6 THEN '1–5'
+    WHEN ${rank} >=6 AND ${rank}  < 11 THEN '6-10'
+    WHEN ${rank}  >=11 AND ${rank}  < 16 THEN '11-15'
+    WHEN ${rank}  >=16 AND ${rank}  < 21 THEN '16-20'
+    WHEN ${rank}  >=21 THEN '21+'
+    ELSE NULL
+    END ;;
+  }
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
@@ -48,13 +67,13 @@ view: products {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	name,
-	distribution_centers.name,
-	distribution_centers.id,
-	order_items.count,
-	inventory_items.count
-	]
+  id,
+  name,
+  distribution_centers.name,
+  distribution_centers.id,
+  order_items.count,
+  inventory_items.count
+  ]
   }
 
 }
