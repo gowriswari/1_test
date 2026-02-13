@@ -1,4 +1,6 @@
-connection: "gowri_bq"
+connection: "62177222-test"
+
+
 
 # include all the views
 include: "/views/**/*.view.lkml"
